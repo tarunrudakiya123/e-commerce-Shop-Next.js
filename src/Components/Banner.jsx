@@ -8,6 +8,7 @@ const Banner = () => {
   const images = ["/Img/shoe1.png", "/Img/shoe2.png", "/Img/shoe3.png"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  //Handlers---------------
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
@@ -48,7 +49,7 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* Right Side Section */}
+        {/* Right Side--------- */}
         <div className="lg:w-2/3 relative flex justify-center items-center bg-gray-50">
           <img
             src={images[currentIndex]}
@@ -56,7 +57,7 @@ const Banner = () => {
             className=" object-cover h-auto lg:ms-20"
           />
 
-          {/* Slide Buttons */}
+          {/* Slide Buttons-------- */}
           <div className="absolute bottom-16 right-6 flex space-x-2">
             <button
               onClick={handlePrev}

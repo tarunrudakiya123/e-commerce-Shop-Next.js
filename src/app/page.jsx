@@ -34,10 +34,6 @@ const ReviewSlider = dynamic(() => import("../Components/ReviewSlider"), {
   ssr: false,
 });
 
-
-
-
-
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
 
@@ -67,8 +63,7 @@ export default function Home() {
           <PopularProducts />
           <PopularBrands />
           <FAQs />
-          <ReviewSlider/>
-          
+          <ReviewSlider />
         </section>
       )}
     </>

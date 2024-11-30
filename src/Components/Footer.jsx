@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1E293B] text-white">
+    <footer id='#contact' className="bg-[#1E293B] text-white">
       <div className="container mx-auto px-4 py-8 md:py-12">
         {/* Top Section----------*/}
 
@@ -114,7 +114,7 @@ export default function Footer() {
 
           {/* Quick Links----------*/}
           <div>
-            <h2 className="text-md font-bold text-teal-500 font-bold">
+            <h2 className="text-md font-bold text-teal-500">
               Quick Links
             </h2>
             <ul className="mt-4 space-y-2">
@@ -149,7 +149,7 @@ export default function Footer() {
 
           {/* Legal Links----------- */}
           <div>
-            <h2 className="text-md font-bold text-teal-500 font-bold">
+            <h2 className="text-md font-bold text-teal-500 ">
               Legal Links
             </h2>
             <ul className="mt-4 space-y-2">
