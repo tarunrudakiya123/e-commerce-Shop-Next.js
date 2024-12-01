@@ -1,38 +1,24 @@
 "use client";
 
-import sortLongString from "@/utils/sortstring";
-import React, { useEffect, useState } from "react";
+import { getProduct } from "@/redux/slices/productSlice";
+import sortLongString from "@/utils/sortString";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ProductLoaderCard from "./Loader/ProductLoader";
+import { addToCart } from "@/redux/slices/cartSlice";
 
 const FeatureProducts = () => {
-  const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+  const { product, productLoading } = useSelector((state) => state.productData);
 
+  // Get Products data-----
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    dispatch(getProduct());
+  }, [dispatch]);
 
-    getProducts();
-  }, []);
-
-  const addToCart = (product) => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existingProduct = cart.find((item) => item.id === product.id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      product.quantity = 1;
-      cart.push(product);
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Product added to cart!");
+    //Add to Cart-----
+  const addToCartHandler = (product) => {
+    dispatch(addToCart(product));
   };
 
   return (
@@ -49,12 +35,14 @@ const FeatureProducts = () => {
         </button>
       </div>
 
-      {/* Product Grid */}
+      {/* Product Grid--------------*/}
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {/* Product Card */}
-        {product &&
-          product?.slice(0, 4)?.map((item) => {
-            return (
+        {productLoading
+          ? Array(4)
+              .fill(0)
+              .map((_, index) => <ProductLoaderCard key={index} />)
+          : product?.slice(0, 4)?.map((item) => (
               <div
                 key={item.id}
                 className="bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -101,15 +89,14 @@ const FeatureProducts = () => {
                     <span className="text-sm text-red-500">30% off</span>
                   </div>
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={() => addToCartHandler(item)}
                     className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600"
                   >
                     Add To Cart
                   </button>
                 </div>
               </div>
-            );
-          })}
+            ))}
       </div>
     </section>
   );

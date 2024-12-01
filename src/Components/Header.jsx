@@ -1,20 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { cartItems } = useSelector((state) => state.cartData);
+
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-20">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href={'/'} className="flex items-center gap-2">
+          <Link href={"/"} className="flex items-center gap-2">
             <Image
               className="h-5 w-5 rounded-full"
               src="/Img/Frame.png"
@@ -86,7 +89,7 @@ const Header = () => {
                   <ShoppingCartOutlinedIcon style={{ color: "#64748B" }} />
                 </div>
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center h-4 w-4 bg-red-500 text-white text-xs font-bold rounded-full transform translate-x-1/2 -translate-y-1/2">
-                  2
+                  {cartItems && cartItems?.length}
                 </span>
               </Link>
             </div>
