@@ -83,7 +83,7 @@ const Header = () => {
                 <AccountCircleOutlinedIcon style={{ color: "#64748B" }} />
               </div>
 
-              <Link href={"/your-cart"} className="relative">
+              <Link href="/your-cart" passHref className="relative">
                 <div
                   className={`p-2 rounded-lg ${
                     path == "/your-cart" ? "bg-teal-500" : "bg-gray-100"
@@ -106,6 +106,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <div className="sm:hidden flex items-center gap-4">
             {/* Cart Icon and Count */}
+
             <Link href={"/your-cart"} className="relative">
               <div
                 className={`p-2 rounded-lg ${
