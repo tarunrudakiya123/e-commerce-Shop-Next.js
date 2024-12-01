@@ -5,8 +5,6 @@ import { useState } from "react";
 const FAQs = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
-  console.log(openIndex);
-
   const faqs = [
     {
       question: "How do I track my order?",
@@ -40,21 +38,22 @@ const FAQs = () => {
   };
 
   return (
-    <section className=" px-8 py-8 md:px-20 md:py-18">
+    <section className="px-8 py-8 md:px-20 md:py-18">
       <h2
-        className="text-2xl  text-left text-gray-800 mb-6"
+        className="text-2xl text-left text-gray-800 mb-6"
         style={{ fontFamily: "sans-serif", fontWeight: 500 }}
       >
         FAQ
       </h2>
-      <div className="space-y-4 ">
-        {faqs?.map((faq, index) => (
+      <div className="space-y-4">
+        {faqs.map((faq, index) => (
           <div key={index} className="border-b border-gray-300">
             <button
               onClick={() => toggleFAQ(index)}
               className="w-full text-left flex justify-between items-center py-3 text-lg font-medium text-gray-700 hover:text-gray-900 focus:outline-none"
+              aria-expanded={openIndex === index ? "true" : "false"}
             >
-              <span>{faq?.question}</span>
+              <span>{faq.question}</span>
 
               <svg
                 className={`h-6 w-6 transform transition-transform duration-200 ${
@@ -74,8 +73,13 @@ const FAQs = () => {
               </svg>
             </button>
             {openIndex === index && (
-              <div className="pb-4 text-gray-600 transition-all duration-300">
-                <p>{faq?.answer}</p>
+              <div
+                className="pb-4 text-gray-600 overflow-hidden transition-all duration-300 ease-in-out"
+                style={{
+                  maxHeight: openIndex === index ? "1000px" : "0",
+                }}
+              >
+                <p>{faq.answer}</p>
               </div>
             )}
           </div>

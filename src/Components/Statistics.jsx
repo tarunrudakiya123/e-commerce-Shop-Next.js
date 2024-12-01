@@ -2,7 +2,7 @@
 
 import Head from "next/head";
 
-export default function Category() {
+export default function Statistics() {
   return (
     <div>
       <Head>
@@ -22,20 +22,20 @@ export default function Category() {
       <main className="bg-white px-4 md:px-10 lg:px-20 py-10">
         {/* Statistics Section */}
         <section
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center"
           aria-label="Statistics"
         >
-          <article className="bg-gray-100 p-6 rounded-lg ">
+          <article className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <p className="text-3xl font-bold text-gray-800">95%</p>
-            <p className="mt-2 text-gray-600">Happy Customer</p>
+            <span className="mt-2 text-gray-600">Happy Customer</span>
           </article>
-          <article className="bg-gray-100 p-6 rounded-lg ">
+          <article className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <p className="text-3xl font-bold text-gray-800">1 Million+</p>
-            <p className="mt-2 text-gray-600">Yearly Sale</p>
+            <span className="mt-2 text-gray-600">Yearly Sale</span>
           </article>
-          <article className="bg-gray-100 p-6 rounded-lg ">
+          <article className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
             <p className="text-3xl font-bold text-gray-800">20k+</p>
-            <p className="mt-2 text-gray-600">Customer Rating</p>
+            <span className="mt-2 text-gray-600">Customer Rating</span>
           </article>
         </section>
       </main>

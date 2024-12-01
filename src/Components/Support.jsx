@@ -7,7 +7,8 @@ const Support = () => {
   return (
     <section className="bg-white py-10 px-5 md:px-14">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center items-center">
-        <div className="flex flex-col items-center">
+        {/* Free Shipping */}
+        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <div className="flex items-center gap-2">
             <Image
               src="/Img/supportIcons/truck.png"
@@ -22,7 +23,8 @@ const Support = () => {
           </p>
         </div>
 
-        <div className="flex flex-col items-center">
+        {/* Money Guarantee */}
+        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <div className="flex items-center gap-2">
             <Image
               src="/Img/supportIcons/indian-rupee.png"
@@ -35,7 +37,8 @@ const Support = () => {
           <p className="text-gray-500 text-sm mt-2">45 Days for Exchange</p>
         </div>
 
-        <div className="flex flex-col items-center">
+        {/* Online Support */}
+        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <div className="flex items-center gap-2">
             <Image
               src="/Img/supportIcons/headphones.png"
@@ -49,7 +52,7 @@ const Support = () => {
         </div>
 
         {/* Flexible Payment */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
           <div className="flex items-center gap-2">
             <Image
               src="/Img/supportIcons/credit-card.png"

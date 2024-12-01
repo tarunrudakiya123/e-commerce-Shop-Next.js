@@ -21,15 +21,10 @@ const Support = dynamic(() => import("../Components/Support"), { ssr: false });
 const PopularProducts = dynamic(() => import("../Components/PopularProducts"), {
   ssr: false,
 });
-
 const PopularBrands = dynamic(() => import("../Components/PopularBrands"), {
   ssr: false,
 });
-
-const FAQs = dynamic(() => import("../Components/FAQs"), {
-  ssr: false,
-});
-
+const FAQs = dynamic(() => import("../Components/FAQs"), { ssr: false });
 const ReviewSlider = dynamic(() => import("../Components/ReviewSlider"), {
   ssr: false,
 });
@@ -46,7 +41,7 @@ export default function Home() {
       {isClient && (
         <section>
           <Head>
-            <title>Home - My ecommerce shop</title>
+            <title>Home - My Ecommerce Shop</title>
             <meta
               name="description"
               content="Welcome to our website with amazing categories and statistics."
@@ -54,6 +49,7 @@ export default function Home() {
             <meta name="keywords" content="home, statistics, categories" />
           </Head>
 
+          {/* Main Content */}
           <Banner />
           <Statistics />
           <Category />

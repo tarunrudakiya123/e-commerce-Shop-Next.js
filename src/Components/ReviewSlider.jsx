@@ -57,7 +57,7 @@ const ReviewSlider = () => {
         {reviews?.map((review, index) => (
           <div
             key={index}
-            className="p-4  flex flex-col items-center text-center border border-gray-300 rounded-md mx-2 mb-6  hover:shadow-xl transition-shadow duration-300"
+            className="p-4 flex flex-col items-center text-center border border-gray-300 rounded-md mx-2 mb-6 hover:shadow-xl transition-shadow duration-300"
           >
             <div className="flex items-center justify-between overflow-hidden mb-4">
               <Image
@@ -67,8 +67,8 @@ const ReviewSlider = () => {
                 height={50}
                 className="rounded-full"
               />
-
               <div className="flex mb-2">
+                {/* Dynamic Rating */}
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <svg
                     key={idx}
@@ -95,8 +95,6 @@ const ReviewSlider = () => {
           </div>
         ))}
       </Slider>
-
-      {/* Css----------------------------- */}
 
       <style jsx>{`
         .slick-dot {

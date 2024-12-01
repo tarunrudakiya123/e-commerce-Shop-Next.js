@@ -2,24 +2,26 @@
 
 import { getProduct } from "@/redux/slices/productSlice";
 import sortLongString from "@/utils/sortString";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductLoaderCard from "./Loader/ProductLoader";
 import { addToCart } from "@/redux/slices/cartSlice";
 import toast from "react-hot-toast";
 
-const PopularProducts = () => {
+const PopularProducts = React.memo(() => {
   const dispatch = useDispatch();
   const { product, productLoading } = useSelector((state) => state.productData);
   const { cartItems } = useSelector((state) => state.cartData);
 
-  //get Products data---------
-
   useEffect(() => {
     dispatch(getProduct());
-  }, []);
+  }, [dispatch]);
 
-  //Add to Cart---------
+  const isInCart = useMemo(
+    () => (id) => cartItems?.some((cart_item) => cart_item?.id === id),
+    [cartItems]
+  );
+
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
     toast.success("Product Added to Cart", {
@@ -59,6 +61,7 @@ const PopularProducts = () => {
                     src={item?.image}
                     alt="Product Image"
                     className="w-full h-48 object-cover rounded-t-lg"
+                    loading="lazy"
                   />
                   <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
                     <svg
@@ -68,12 +71,7 @@ const PopularProducts = () => {
                       strokeWidth="1.5"
                       stroke="currentColor"
                       className={`w-6 h-6 ${
-                        cartItems &&
-                        cartItems?.some(
-                          (cart_item) => item?.id === cart_item?.id
-                        )
-                          ? "text-red-500"
-                          : "text-gray-300"
+                        isInCart(item?.id) ? "text-red-500" : "text-gray-300"
                       }`}
                     >
                       <path
@@ -114,6 +112,6 @@ const PopularProducts = () => {
       </div>
     </section>
   );
-};
+});
 
 export default PopularProducts;

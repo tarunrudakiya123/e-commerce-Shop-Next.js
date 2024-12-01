@@ -2,7 +2,7 @@
 
 import { getProduct } from "@/redux/slices/productSlice";
 import sortLongString from "@/utils/sortString";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductLoaderCard from "./Loader/ProductLoader";
 import { addToCart } from "@/redux/slices/cartSlice";
@@ -13,12 +13,16 @@ const FeatureProducts = () => {
   const { product, productLoading } = useSelector((state) => state.productData);
   const { cartItems } = useSelector((state) => state.cartData);
 
-  // Get Products data-----
+  // Local state for handling hydration errors
+  const [isClient, setIsClient] = useState(false);
+
+  // Get Products data
   useEffect(() => {
+    setIsClient(true); // Ensure that we're on the client side
     dispatch(getProduct());
   }, [dispatch]);
 
-  //Add to Cart-----
+  // Add to Cart
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
     toast.success("Product Added to Cart", {
@@ -28,6 +32,9 @@ const FeatureProducts = () => {
       },
     });
   };
+
+  // Only render after the client-side component is mounted
+  if (!isClient) return null;
 
   return (
     <section className="container mx-auto px-10 md:px-20 py-8">
@@ -44,7 +51,6 @@ const FeatureProducts = () => {
       </div>
 
       {/* Product Grid--------------*/}
-
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {productLoading
           ? Array(4)
@@ -61,7 +67,6 @@ const FeatureProducts = () => {
                     alt="Product Image"
                     className="w-full h-48 object-cover rounded-t-lg"
                   />
-
                   <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
