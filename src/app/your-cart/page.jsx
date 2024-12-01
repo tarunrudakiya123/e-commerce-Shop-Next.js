@@ -4,12 +4,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateQuantity } from "@/redux/slices/cartSlice";
 import Link from "next/link";
+import Image from "next/image";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartData);
-
-  console.log(cartItems, "cartItems--");
 
   const calculateSubtotal = (product) =>
     product?.price * Number(product?.quantity);
@@ -26,10 +26,16 @@ const Cart = () => {
 
   const handleRemoveItem = (productId) => {
     dispatch(removeFromCart(productId));
+    toast.success("Product Removed From Cart", {
+      style: {
+        backgroundColor: "rgb(20, 184, 166)",
+        color: "white",
+      },
+    });
   };
 
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:p-8 lg:px:4">
       <h1 className="text-xl font-bold mb-6">Your Cart</h1>
       <div className="overflow-x-auto">
         {/* Table Header--------------- */}
@@ -45,25 +51,18 @@ const Cart = () => {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody className="bg-white">
             {cartItems?.length > 0 ? (
               cartItems?.map((product) => (
                 <tr key={product?.id} className="border-t">
                   <td className="px-4 py-4 flex items-center gap-4">
-                    <img
-                      src={product?.image || "/default-image.jpg"}
+                    <Image
+                      src={product?.image}
                       alt={product?.name}
-                      className="w-16 h-16 rounded"
+                      width={64}
+                      height={64}
+                      className="rounded"
                     />
-                    <div>
-                      <h2 className="font-medium">{product.name}</h2>
-                      <p className="text-sm text-gray-500">
-                        Color: {product?.color}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        Size: {product?.size}
-                      </p>
-                    </div>
                   </td>
                   <td className="px-4 py-4">Rs.{product?.price}</td>
                   <td className="px-4 py-4">
@@ -91,11 +90,15 @@ const Cart = () => {
                   <td className="px-4 py-4">Free</td>
                   <td className="px-4 py-4">Rs.{calculateSubtotal(product)}</td>
                   <td className="px-4 py-4">
-                    <button
-                      className="text-red-500 hover:text-red-700"
-                      onClick={() => handleRemoveItem(product?.id)}
-                    >
-                      🗑️
+                    <button onClick={() => handleRemoveItem(product?.id)}>
+                      <Image
+                        priority
+                        src="/Img/deleteIcon.png"
+                        alt={product?.name}
+                        width={24}
+                        height={24}
+                        className="ms-2"
+                      />
                     </button>
                   </td>
                 </tr>
@@ -131,13 +134,12 @@ const Cart = () => {
               Continue Shopping
             </button>
           </Link>
-
         </div>
         <div className="flex-1 border p-4 rounded-md bg-teal-50">
           <h2 className="text-lg font-bold mb-4">Order Summary</h2>
           <div className="flex justify-between mb-2">
             <span>Sub Total</span>
-            <span>Rs.{calculateGrandTotal()}</span>
+            <span>Rs.{calculateGrandTotal().toFixed(2)}</span>
           </div>
           <div className="flex justify-between mb-2">
             <span>Shipping</span>
@@ -146,7 +148,7 @@ const Cart = () => {
           <hr className="my-2" />
           <div className="flex justify-between font-bold">
             <span>Grand Total</span>
-            <span>Rs.{calculateGrandTotal()}</span>
+            <span>Rs.{calculateGrandTotal().toFixed(2)}</span>
           </div>
           <button className="mt-4 w-full bg-teal-500 text-white py-2 rounded hover:bg-green-600">
             Proceed to Checkout

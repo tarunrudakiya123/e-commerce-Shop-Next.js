@@ -1,22 +1,28 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { useSelector } from "react-redux";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartData);
+  const [open, setOpen] = useState(false);
+  const [path, setPath] = useState(window.location.pathname);
 
+
+
+
+
+  
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-20">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
           <Link href={"/"} className="flex items-center gap-2">
             <Image
               className="h-5 w-5 rounded-full"
@@ -36,6 +42,7 @@ const Header = () => {
           </Link>
 
           {/* Navigation Links */}
+
           <div className="hidden sm:flex sm:space-x-4">
             <Link
               href="/"
@@ -85,9 +92,18 @@ const Header = () => {
               </div>
 
               <Link href={"/your-cart"} className="relative">
-                <div className="bg-gray-100 p-2 rounded-lg hover:text-teal-400">
-                  <ShoppingCartOutlinedIcon style={{ color: "#64748B" }} />
+                <div
+                  className={`p-2 rounded-lg ${
+                    path == "/your-cart" ? "bg-teal-500" : "bg-gray-100"
+                  } hover:text-teal-400`}
+                >
+                  <ShoppingCartOutlinedIcon
+                    style={{
+                      color: path === "/your-cart" ? "#ffffff" : "#64748B",
+                    }}
+                  />
                 </div>
+
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center h-4 w-4 bg-red-500 text-white text-xs font-bold rounded-full transform translate-x-1/2 -translate-y-1/2">
                   {cartItems && cartItems?.length}
                 </span>
@@ -102,6 +118,7 @@ const Header = () => {
               className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-teal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
               aria-controls="mobile-menu"
               aria-expanded="false"
+              onClick={() => setOpen(!open)}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -126,47 +143,51 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className="sm:hidden" id="mobile-menu">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          <Link
-            href="#"
-            className="block rounded-md bg-teal-500 px-3 py-2 text-base font-medium text-white"
-            aria-current="page"
-          >
-            Home
-          </Link>
-          <Link
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
-          >
-            Categories
-          </Link>
-          <Link
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
-          >
-            Explore
-          </Link>
-          <Link
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
-          >
-            About
-          </Link>
-          <Link
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
-          >
-            Blog
-          </Link>
-          <Link
-            href="#"
-            className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
-          >
-            Contact
-          </Link>
-        </div>
-      </div>
+      {open && (
+        <>
+          <div className="sm:hidden" id="mobile-menu">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              <Link
+                href="#"
+                className="block rounded-md bg-teal-500 px-3 py-2 text-base font-medium text-white"
+                aria-current="page"
+              >
+                Home
+              </Link>
+              <Link
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
+              >
+                Categories
+              </Link>
+              <Link
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
+              >
+                Explore
+              </Link>
+              <Link
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
+              >
+                About
+              </Link>
+              <Link
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
+              >
+                Blog
+              </Link>
+              <Link
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-teal-500 hover:text-white"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </nav>
   );
 };

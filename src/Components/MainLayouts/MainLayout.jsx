@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-const Header = dynamic(() => import("../Components/Header"), {
+const Header = dynamic(() => import("../MainLayouts/Header"), {
   ssr: false,
 });
-const Footer = dynamic(() => import("../Components/Footer"), {
+const Footer = dynamic(() => import("../MainLayouts/Footer"), {
   ssr: false,
 });
 

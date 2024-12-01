@@ -6,19 +6,29 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductLoaderCard from "./Loader/ProductLoader";
 import { addToCart } from "@/redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 const FeatureProducts = () => {
+
   const dispatch = useDispatch();
   const { product, productLoading } = useSelector((state) => state.productData);
+  const { cartItems } = useSelector((state) => state.cartData);
 
   // Get Products data-----
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
 
-    //Add to Cart-----
+
+  //Add to Cart-----
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
+    toast.success("Product Added to Cart", {
+      style: {
+        backgroundColor: "rgb(20, 184, 166)",
+        color: "white",
+      },
+    });
   };
 
   return (
@@ -53,6 +63,7 @@ const FeatureProducts = () => {
                     alt="Product Image"
                     className="w-full h-48 object-cover rounded-t-lg"
                   />
+
                   <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +71,14 @@ const FeatureProducts = () => {
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
                       stroke="currentColor"
-                      className="w-6 h-6 text-gray-300"
+                      className={`w-6 h-6 ${
+                        cartItems &&
+                        cartItems?.some(
+                          (cart_item) => item?.id === cart_item?.id
+                        )
+                          ? "text-red-500"
+                          : "text-gray-300"
+                      }`}
                     >
                       <path
                         fillRule="evenodd"
@@ -88,6 +106,7 @@ const FeatureProducts = () => {
 
                     <span className="text-sm text-red-500">30% off</span>
                   </div>
+
                   <button
                     onClick={() => addToCartHandler(item)}
                     className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600"

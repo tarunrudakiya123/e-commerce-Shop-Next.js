@@ -1,5 +1,5 @@
 const sortLongString = (str) => {
-  const maxLength = 50;
+  const maxLength = 20;
   if (str.length > maxLength) {
     return `${str.substring(0, maxLength)} View more...`;
   }
