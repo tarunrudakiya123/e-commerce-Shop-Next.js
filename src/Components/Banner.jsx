@@ -56,12 +56,19 @@ const Banner = () => {
       className="min-h-screen flex flex-col lg:flex-row overflow-hidden"
     >
       {/* Left Side */}
-      <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-16 py-6">
+      <div className="lg:w-1/2 flex flex-col justify-center px-6 lg:px-16  py-6">
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
           Nike Classics Spotlight.
         </h1>
 
-        <p className="text-gray-600 mt-4 text-sm sm:text-base">
+        <p className="text-gray-600 mt-4 text-sm sm:text-base text-justify">
+          The Nike shoes offer unmatched comfort, style, and performance, making
+          them ideal for athletes and everyday wear. With cutting-edge
+          technology and sleek designs, they provide the perfect fit for any
+          activity.
+        </p>
+
+        <p className="text-gray-600 mt-4 text-sm sm:text-base text-justify">
           Designed for city conditions, this winterized version of the Vomero is
           made for wet weather. Durable materials and a rubber mudguard work
           together to help safeguard your shoes from dirt and puddles. Plus, a
@@ -69,7 +76,7 @@ const Banner = () => {
           you wander.
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center lg:justify-start mt-6 space-y-4 sm:space-y-0 sm:space-x-4">
+        <div className="flex flex-col sm:flex-row justify-start mt-6 space-y-4 sm:space-y-0 sm:space-x-4">
           <Link
             href="#"
             className="border border-teal-500 text-teal-500 px-8 sm:px-12 py-2 sm:py-3 rounded-md hover:bg-teal-100 no-underline"
@@ -87,13 +94,13 @@ const Banner = () => {
       </div>
 
       {/* Right Side */}
-      <div className="lg:w-1/2 flex justify-center items-center bg-gray-50 relative lg:right-10 md:right-10">
-        <div className="w-full h-64 sm:h-96 md:h-full overflow-hidden relative">
+      <div className="lg:w-1/2  flex justify-center items-center bg-gray-50 relative lg:right-10 md:right-4">
+        <div className="w-full h-64  sm:h-96 md:h-full overflow-hidden relative">
           <div className="w-full h-full relative">
             <img
               src={images[currentIndex].src}
               alt={images[currentIndex].alt}
-              className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform-gpu"
+              className="w-full h-full  object-cover transition-transform duration-700 ease-in-out transform-gpu"
               style={{
                 transform: `perspective(1000px) rotateY(${
                   currentIndex * 180
