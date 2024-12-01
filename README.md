@@ -1,3 +1,17 @@
+
+![Full size web page with Home Page](https://github.com/user-attachments/assets/46f700cb-8eb3-4bbd-a4ef-13732fa8c701)
+
+
+![Full size web page with cart page](https://github.com/user-attachments/assets/aaf6018b-180d-4554-a15d-ac5a0929956e)
+
+
+![Tab View](https://github.com/user-attachments/assets/a7883f1f-403c-4444-a35b-d642dde56c6c)
+
+
+![Mobile View](https://github.com/user-attachments/assets/d7ba83ea-9c6f-4130-91f4-ea538f98aab7)
+
+
+
 # eCommerce Shop - Next.js
 
 This is an eCommerce shop built using Next.js, showcasing various sections as components. It leverages **React Slick** for image sliders (banners and reviews) and **Redux Toolkit** for state management. The application fetches product data and other resources from **Fake Shop APIs** to simulate an eCommerce environment.
