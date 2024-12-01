@@ -32,13 +32,13 @@ const ReviewSlider = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    dots: true, 
-    dotClass: "slick-dot", 
+    dots: true,
+    dotClass: "slick-dot",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2, 
+          slidesToShow: 2,
         },
       },
       {

@@ -14,11 +14,6 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const [path, setPath] = useState(window.location.pathname);
 
-
-
-
-
-  
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-20">

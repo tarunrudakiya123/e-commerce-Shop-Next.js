@@ -9,7 +9,6 @@ import { addToCart } from "@/redux/slices/cartSlice";
 import toast from "react-hot-toast";
 
 const FeatureProducts = () => {
-
   const dispatch = useDispatch();
   const { product, productLoading } = useSelector((state) => state.productData);
   const { cartItems } = useSelector((state) => state.cartData);
@@ -18,7 +17,6 @@ const FeatureProducts = () => {
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
-
 
   //Add to Cart-----
   const addToCartHandler = (product) => {

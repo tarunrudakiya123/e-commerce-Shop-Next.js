@@ -6,7 +6,6 @@ import Image from "next/image";
 export default function PopularBrands() {
   return (
     <div>
-      {/* SEO Metadata */}
       <Head>
         <title>Popular Brands - Puma, addidas, Fila, Forever 21</title>
         <meta
