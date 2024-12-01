@@ -1,12 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import Link from "next/link";
 
 const Banner = () => {
   const images = [
+    { src: "/Img/shoe1.png", alt: "Classic Nike Shoe 1" },
+    { src: "/Img/shoe2.png", alt: "Classic Nike Shoe 2" },
+    { src: "/Img/shoe3.png", alt: "Classic Nike Shoe 3" },
+
+    { src: "/Img/shoe1.png", alt: "Classic Nike Shoe 1" },
+    { src: "/Img/shoe2.png", alt: "Classic Nike Shoe 2" },
+    { src: "/Img/shoe3.png", alt: "Classic Nike Shoe 3" },
+
+    { src: "/Img/shoe1.png", alt: "Classic Nike Shoe 1" },
+    { src: "/Img/shoe2.png", alt: "Classic Nike Shoe 2" },
+    { src: "/Img/shoe3.png", alt: "Classic Nike Shoe 3" },
+
+    { src: "/Img/shoe1.png", alt: "Classic Nike Shoe 1" },
+    { src: "/Img/shoe2.png", alt: "Classic Nike Shoe 2" },
+    { src: "/Img/shoe3.png", alt: "Classic Nike Shoe 3" },
+
     { src: "/Img/shoe1.png", alt: "Classic Nike Shoe 1" },
     { src: "/Img/shoe2.png", alt: "Classic Nike Shoe 2" },
     { src: "/Img/shoe3.png", alt: "Classic Nike Shoe 3" },
@@ -25,6 +41,14 @@ const Banner = () => {
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   return (
     <section
@@ -63,17 +87,24 @@ const Banner = () => {
       </div>
 
       {/* Right Side */}
-      <div className="lg:w-1/2 flex justify-center items-center bg-gray-50 relative">
+      <div className="lg:w-1/2 flex justify-center items-center bg-gray-50 relative lg:right-10 md:right-10">
         <div className="w-full h-64 sm:h-96 md:h-full overflow-hidden relative">
-          <img
-            src={images[currentIndex].src}
-            alt={images[currentIndex].alt}
-            className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
-          />
+          <div className="w-full h-full relative">
+            <img
+              src={images[currentIndex].src}
+              alt={images[currentIndex].alt}
+              className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform-gpu"
+              style={{
+                transform: `perspective(1000px) rotateY(${
+                  currentIndex * 180
+                }deg)`,
+              }}
+            />
+          </div>
         </div>
 
         {/* Slide Buttons */}
-        <div className="absolute bottom-0 lg:bottom-20 right-10 flex space-x-2">
+        <div className="absolute bottom-0  lg:bottom-20 lg:right-10 right-30 flex space-x-2">
           <button
             onClick={handlePrev}
             className="bg-gray-300 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 cursor-pointer"
