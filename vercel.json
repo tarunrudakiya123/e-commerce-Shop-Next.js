@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/src/page.js"
+      "destination": "/"
     }
   ],
   "cleanUrls": true
