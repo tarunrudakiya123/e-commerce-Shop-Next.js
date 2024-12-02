@@ -94,7 +94,7 @@ const Banner = () => {
       </div>
 
       {/* Right Side */}
-      <div className="lg:w-1/2  flex justify-center items-center bg-gray-50 relative lg:right-10 md:right-4">
+      <div className="lg:w-1/2  flex justify-center items-center  relative lg:right-10 md:right-4">
         <div className="w-full h-64  sm:h-96 md:h-full overflow-hidden relative">
           <div className="w-full h-full relative">
             <img
