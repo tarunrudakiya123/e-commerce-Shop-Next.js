@@ -100,7 +100,7 @@ const Banner = () => {
             <img
               src={images[currentIndex].src}
               alt={images[currentIndex].alt}
-              className="w-full h-full  object-cover transition-transform duration-700 ease-in-out transform-gpu"
+              className="w-full h-full  object-contain transition-transform duration-700 ease-in-out transform-gpu"
               style={{
                 transform: `perspective(1000px) rotateY(${
                   currentIndex * 180
